@@ -4,7 +4,7 @@ pipeline{
     }
     agent any
      environment{
-        registry = "public.ecr.aws/v0r4v2b6/docker-repo2907:latest"
+        registry = "public.ecr.aws/v0r4v2b6/docker-repo2907"
     }
     stages{
      stage('Cloning Git') {
