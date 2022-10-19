@@ -35,6 +35,7 @@ pipeline{
         steps{
    withKubeConfig(caCertificate: '', clusterName: '', contextName: '', credentialsId: 'K8S', namespace: '', serverUrl: '') {
     // some block
+    sh "kubectl delete all --all"
     sh "kubectl apply -f eks-deploy-k8s.yaml"
     }
  }
