@@ -4,7 +4,7 @@ pipeline{
     }
     agent any
      environment{
-        registry = "318041867722.dkr.ecr.us-east-1.amazonaws.com/ekscluster123"
+        registry = "288513718779.dkr.ecr.ap-south-1.amazonaws.com/eks"
     }
     stages{
      stage('Cloning Git') {
@@ -26,8 +26,8 @@ pipeline{
     }
      stage('Push into ECR'){
         steps{
-            sh 'aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 318041867722.dkr.ecr.us-east-1.amazonaws.com'
-            sh 'docker push 318041867722.dkr.ecr.us-east-1.amazonaws.com/ekscluster123:latest'
+            sh 'aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 288513718779.dkr.ecr.ap-south-1.amazonaws.com'
+            sh 'docker push 288513718779.dkr.ecr.ap-south-1.amazonaws.com/eks:latest'
         }
     }
     
@@ -40,7 +40,7 @@ pipeline{
  }
 }
 
-  stage ('Slack Notification for QA Deploy') {
+  stage ('Slack Notification') {
       steps {
         slackSend channel: 'C046RTGD1MG,devops-ci-cd-pipeline', message: 'Deployment has been done successfully'
       }
