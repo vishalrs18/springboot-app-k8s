@@ -40,10 +40,6 @@ pipeline{
  }
 }
 
-  stage ('Slack Notification') {
-      steps {
-        slackSend channel: 'C046RTGD1MG,devops-ci-cd-pipeline', message: 'Deployment has been done successfully'
-      }
-    }  
+ 
   }
 }
