@@ -20,7 +20,7 @@ pipeline{
     stage('Building image') {
       steps{
         script {
-         docker.build registry 
+         sudo docker.build registry 
         }
       }
     }
@@ -40,7 +40,4 @@ pipeline{
     }
  }
 }
-
- 
-  }
-}
+    }
