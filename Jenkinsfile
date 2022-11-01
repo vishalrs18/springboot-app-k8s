@@ -1,15 +1,15 @@
 pipeline{
       tools {
-        maven "Maven3"
+        maven "maven-1"
     }
     agent any
      environment{
-        registry = "795590076180.dkr.ecr.ap-south-1.amazonaws.com/ecr123"
+        registry = "public.ecr.aws/b2y6t5b2/demo:latest"
     }
     stages{
      stage('Cloning Git') {
             steps {
-                checkout([$class: 'GitSCM', branches: [[name: '*/main']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: '', url: 'https://github.com/dinu2907/springboot-app.git']]])     
+                checkout([$class: 'GitSCM', branches: [[name: '*/main']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: '', url: 'https://github.com/vishalrs18/springboot-app-k8s.git']]])     
             }
    }
     stage('Build'){
@@ -26,8 +26,8 @@ pipeline{
     }
      stage('Push into ECR'){
         steps{
-            sh 'aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 795590076180.dkr.ecr.ap-south-1.amazonaws.com'
-            sh 'docker push 795590076180.dkr.ecr.ap-south-1.amazonaws.com/ecr123:latest'
+            sh 'aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/b2y6t5b2'
+            sh 'docker push public.ecr.aws/b2y6t5b2/demo:latest'
         }
     }
     
