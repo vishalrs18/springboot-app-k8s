@@ -4,7 +4,7 @@ pipeline{
     }
     agent any
      environment{
-        registry = "public.ecr.aws/b2y6t5b2/demo:latest"
+        registry = "802613590849.dkr.ecr.ap-northeast-1.amazonaws.com/demo1"
     }
     stages{
      stage('Cloning Git') {
@@ -26,8 +26,8 @@ pipeline{
     }
      stage('Push into ECR'){
         steps{
-            sh 'aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/b2y6t5b2'
-            sh 'docker push public.ecr.aws/b2y6t5b2/demo:latest'
+            sh 'aws ecr get-login-password --region ap-northeast-1 | docker login --username AWS --password-stdin 802613590849.dkr.ecr.ap-northeast-1.amazonaws.com'
+            sh 'docker push 802613590849.dkr.ecr.ap-northeast-1.amazonaws.com/demo1:latest'
         }
     }
     
